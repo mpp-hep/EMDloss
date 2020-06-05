@@ -13,9 +13,11 @@ penaltyValue = float(sys.argv[2])
 
 f = h5py.File(inputFile, 'r')
 print(f.keys())
+
 X1_train = np.array(f.get("J1_train"), dtype=np.float32)
 X1_train = np.concatenate((X1_train, np.array(f.get("J2_train"), dtype=np.float32)), axis=2)
 Y_train = np.array(f.get("EMD_train"), dtype=np.float32)
+
 X1_val = np.array(f.get("J1_val"), dtype=np.float32)
 X1_val = np.concatenate((X1_val, np.array(f.get("J2_val"), dtype=np.float32)), axis=2)
 Y_val = np.array(f.get("EMD_val"), dtype=np.float32)
