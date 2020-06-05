@@ -127,13 +127,13 @@ history = model.fit(X_train, Y_train, epochs=500, batch_size=128, verbose = 2,
 #nameModel = 'EMD_Dense_MAPE'
 nameModel = 'EMD_Dense_MAE_AsymmetryLarge_%s' %sys.argv[1]
 # store history
-f = h5py.File("../models/%s_history.h5" %nameModel, "w")
+f = h5py.File("models/%s_history.h5" %nameModel, "w")
 f.create_dataset("training_loss", data=np.array(history.history['loss']),compression='gzip')
 f.create_dataset("validation_loss", data=np.array(history.history['val_loss']),compression='gzip')
 f.close()
 
 # store model
 model_json = model.to_json()
-with open("../models/%s.json" %nameModel, "w") as json_file:
+with open("models/%s.json" %nameModel, "w") as json_file:
     json_file.write(model_json)
-model.save_weights("../models/%s.h5" %nameModel)
+model.save_weights("models/%s.h5" %nameModel)
